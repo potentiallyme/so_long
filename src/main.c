@@ -5,78 +5,61 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 19:22:51 by lmoran            #+#    #+#             */
-/*   Updated: 2024/01/22 19:55:01 by lmoran           ###   ########.fr       */
+/*   Created: 2024/01/30 16:10:40 by lmoran            #+#    #+#             */
+/*   Updated: 2024/03/08 15:32:14 by lmoran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static int	parse_it(char **map, int i, int j)
+void	loop_game(t_game *game)
 {
-	if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'P' || map[i][j] == 'C' || map[i][j] == 'E')
-		return (1);
-	return (0);
+	if (!game->map->on)
+		return ;
+	game->map->mv_c = 0;
+	print_moves(game);
+	mlx_hook(game->data->win, KeyPress, KeyPressMask, &key_hook, game);
+	mlx_hook(game->data->win, 17, 1L << 17, cross_free, game);
+	mlx_loop(game->data->mlx);
 }
 
-static int	wall_check(char **map, int i, int j)
+void	so_long(char *av, int flag)
 {
-	int len;
-	int lines;
+	t_game	*game;
+	int		fd;
 
-	len = ft_strlen(map[0]);
-	lines = ft_lines_double(map);
-	if ((i == 0 || i == lines) && map[i][j] != '1')
-		return (0);
-	if (((i != 0 || i != lines) && (j == 0 || j == len)) && map[i][j] != '1')
-		return (0);	
-	return (1);
+	game = ft_calloc(1, sizeof(t_game));
+	fd = open(av, O_RDWR);
+	if (!check_fd(fd, game))
+		return ;
+	game->map = init_map(fd);
+	close(fd);
+	if (game->map->on)
+		game->map->av1 = ft_strdup(av);
+	if (flag == 1)
+		free(av);
+	is_square(game->map);
+	is_sized(game->map);
+	is_solvable(game);
+	if (!game->map->on)
+		check_final(game);
+	game->data = init_data(game);
+	if (!game->data)
+		exit(0);
+	make_game(game);
+	loop_game(game);
+	game_free(game, 1);
 }
 
-static char *fuse_em(int fd)
+int	main(int ac, char **av)
 {
-	char *tmp;
-	char *tmp_g;
-
-	tmp = 0;
-	tmp_g = get_next_line(fd);
-	while (tmp_g)
+	if (ac != 2 || !is_it_ber(av[1]))
 	{
-		tmp = ft_strjoin(tmp, tmp_g);
-		tmp_g = get_next_line(fd);
+		ft_printf("\n%sERROR%s\nMake sure to have the f", R, YLW);
+		ft_printf("ollowing format: %s./so_long maps/\"map_name\".ber\n\n%s",
+			BLU, RST);
+		return (0);
 	}
-	return (tmp);
+	welcome_message();
+	so_long(av[1], 0);
 }
-
-static char	**check_and_make(int fd)
-{
-	int		i;
-	int		lines;
-	char	**map;
-
-	i = 0;
-	map = 0;
-	lines = 0;
-	map = ft_split(fuse_em(fd), '\n');
-	lines = ft_lines_double(map);
-	i = 0;
-	if (ft_iterate_double(map, parse_it) && ft_iterate_double(map, wall_check) && ft_strlen_comp(map))
-		return (map);
-	return (NULL);
-}
-
-// int	main(int ac, char **av)
-// {
-// 	int fd;
-// 	char **map;
-
-// 	fd = open(av[1], O_RDWR);
-// 	map = NULL;
-// 	map = check_and_make(fd);
-// 	close(fd);
-// 	if (map)
-// 		ft_putstr_double(map);
-// 	else
-// 		ft_putstr("fail");
-// 	(void)ac;
-// }

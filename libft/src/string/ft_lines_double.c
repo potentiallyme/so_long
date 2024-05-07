@@ -6,7 +6,7 @@
 /*   By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:00:43 by lmoran            #+#    #+#             */
-/*   Updated: 2024/01/22 16:03:56 by lmoran           ###   ########.fr       */
+/*   Updated: 2024/03/05 19:00:11 by lmoran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int	ft_lines_double(char **s)
 {
-	int i;
-	int lines;
-
+	int	i;
+	int	lines;
 
 	i = 0;
 	lines = 0;

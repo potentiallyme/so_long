@@ -47,18 +47,19 @@ RNBW	=	@printf "\r$(RED). $(ORANGE). $(YELLOW). $(GREEN). $(LBLUE). $(BLUE). $(I
 # CHECK
 CHECK_DIR	:=	check
 SRC_CHECK	:=	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_isvals.c \
-				ft_iterate_double.c
+				ft_iterate_double.c ft_iterate.c ft_make_rand.c
 CHECK		:=	$(SRC_CHECK:%=$(CHECK_DIR)/%)
 
 #LIST
 LIST_DIR	:=	list
 SRC_LIST	:=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c \
-				ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
+				ft_lstlast.c ft_lstnew.c ft_lstsize.c
 LIST		:=	$(SRC_LIST:%=$(LIST_DIR)/%)
 
 # MEMORY
 MEM_DIR		:=	memory
-SRC_MEM		:=	ft_bzero.c ft_calloc.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c
+SRC_MEM		:=	ft_bzero.c ft_calloc.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c \
+				ft_free.c
 MEM			:=	$(SRC_MEM:%=$(MEM_DIR)/%)
 
 # PRINT
@@ -77,7 +78,7 @@ STRING_DIR	:=	string
 SRC_STRING	:=	ft_atoi.c ft_itoa.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c \
 				ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
 				ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_lines_double.c \
-				ft_strlen_double.c ft_strlen_comp.c
+				ft_linelen.c ft_strlen_comp.c ft_strdup_double.c ft_strcmp.c
 STRING		:=	$(SRC_STRING:%=$(STRING_DIR)/%)
 
 # GNL	

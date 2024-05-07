@@ -6,7 +6,7 @@
 /*   By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:19:30 by lmoran            #+#    #+#             */
-/*   Updated: 2023/12/18 11:28:05 by lmoran           ###   ########.fr       */
+/*   Updated: 2024/03/05 18:58:57 by lmoran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 long	ft_atoi(const char *s)
 {
-	int	sign;
+	int		sign;
 	long	n;
-	int	i;
+	int		i;
 
 	sign = 1;
 	n = 0;

@@ -6,7 +6,7 @@
 /*   By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:36:35 by lmoran            #+#    #+#             */
-/*   Updated: 2023/12/18 11:38:45 by lmoran           ###   ########.fr       */
+/*   Updated: 2024/02/05 15:55:09 by lmoran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,20 @@ static int	write_split(char **tab, char const *s, char c)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c, int free_or_not)
 {
 	char	**res;
 	int		words;
 
 	if (!s)
-		return (NULL);
+		return (0);
 	words = count_words(s, c);
 	res = malloc(sizeof(char *) * (words + 1));
 	if (!res)
-		return (NULL);
-	res[words] = NULL;
+		return (0);
+	res[words] = 0;
 	write_split(res, s, c);
+	if (free_or_not == 1)
+		free(s);
 	return (res);
 }

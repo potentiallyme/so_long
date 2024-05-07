@@ -6,7 +6,7 @@
 /*   By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 17:11:16 by lmoran            #+#    #+#             */
-/*   Updated: 2024/01/22 18:17:23 by lmoran           ###   ########.fr       */
+/*   Updated: 2024/03/05 18:59:20 by lmoran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_strlen_comp(char **s)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -23,7 +23,7 @@ int	ft_strlen_comp(char **s)
 	{
 		j = ft_strlen(s[i]);
 		i++;
-		if (j != ft_strlen(s[i]))
+		if (j != ft_strlen(s[i]) || j < 4)
 			return (0);
 	}
 	return (1);

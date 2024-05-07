@@ -6,7 +6,7 @@
 /*   By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:27:27 by lmoran            #+#    #+#             */
-/*   Updated: 2024/01/22 18:38:11 by lmoran           ###   ########.fr       */
+/*   Updated: 2024/03/05 19:00:20 by lmoran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	ft_putstr_double(char **s)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (s[i])
 	{
 		ft_printf("%s\n", s[i]);
 		i++;
 	}
+	ft_printf("\n");
 }

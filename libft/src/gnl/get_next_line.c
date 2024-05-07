@@ -6,7 +6,7 @@
 /*   By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 07:29:26 by lmoran            #+#    #+#             */
-/*   Updated: 2024/01/22 15:52:09 by lmoran           ###   ########.fr       */
+/*   Updated: 2024/01/30 16:40:12 by lmoran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*get_next_line(int fd)
 	static char	s[2048][BUFFER_SIZE + 1];
 	char		*rd_l;
 
-	rd_l = NULL;
+	rd_l = 0;
 	if (!ft_conditions(fd))
 		return (NULL);
 	if (s[fd][0] != 0)

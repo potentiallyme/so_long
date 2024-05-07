@@ -6,14 +6,14 @@
 #    By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/16 03:44:44 by lmoran            #+#    #+#              #
-#    Updated: 2024/01/22 18:29:29 by lmoran           ###   ########.fr        #
+#    Updated: 2024/03/06 19:10:27 by lmoran           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #...............................................#
 
 NAME	= so_long
-CC		= cc -g3
+CC		= @clang -g3
 CFLAGS	= -Wall -Werror -Wextra
 RM		= @rm -f
 CLEAR	= @clear
@@ -23,7 +23,28 @@ CMP		= 1
 
 #...............................................#
 
-SRC	= ./src/main.c
+SRC	= 	./src/main.c\
+		./src/parse_core.c\
+		./src/parse_utils.c\
+		./src/solve_utils.c\
+		./src/struct_utils.c\
+		./src/frees.c\
+		./src/frees_2.c\
+		./src/errors.c\
+		./src/make_game.c\
+		./src/game_utils.c\
+		./src/game_utils_2.c\
+		./src/game_utils_3.c\
+		./src/move_ments.c\
+		./src/update_game.c\
+		./src/make_trail.c\
+		./src/recursive_checker.c\
+		./src/game_ends.c\
+		./src/asset_inits.c\
+		./src/welcome_in.c\
+		./src/static_anims.c\
+		./src/print_moves.c
+		
 
 OBJ	= $(SRC:.c=.o)
 
@@ -34,8 +55,9 @@ PRINT_NAME	= ./libft/libft.a
 
 #...............................................#
 
-MLX = ./minilibx-linux/libmlx_Linux.a
+MLX = minilibx-linux/libmlx_Linux.a
 MLX_A = ./minilibx-linux/libmlx.a
+MLX_PATH = minilibx-linux
 
 #...............................................#
 
@@ -62,26 +84,31 @@ RNBW	= @printf "                                                          \r$(IT
 
 all: $(MLX) $(PRINT_NAME) $(NAME)
 
+bonus : $(MLX) $(PRINT_NAME) $(NAME)
+
 %.o: %.c $(HEAD)
 	@printf "\r$(FADE)$(SPINK)Compiling $(RESET)$(GREEN)$<$(BLUE) [$(SPINK)$(CMP)$(BLUE)/$(SPINK)$(FILE)$(BLUE)]$(RESET)                       \r"
 	$(CC) $(CFLAGS) -c $< -o $@
 	@$(eval CMP=$(shell echo $$(($(CMP)+1))))
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(CFLAGS) $(PRINT_NAME) -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJ) $(CFLAGS) $(PRINT_NAME) -lXext -lX11 -lm -lz -o $(NAME) $(MLX)
 	$(RNBW)
 
 $(PRINT_NAME):
 	@make -C $(PRINT_PATH)
 
-$(MLX):
+$(MLX): minilibx-linux
 	@printf "$(LBLUE)$(FADE)CLONING AND COMPILING MLX\n$(RESET)\n"
-	@git clone https://github.com/42Paris/minilibx-linux.git $@
-	@cd minilibx-linux/libmlx_Linux.a && make -sn
+	@cd minilibx-linux && make
 	@printf "\n$(LBLUE)$(FADE)$(BOLD)MINILIBX CLONED AND COMPILED\n\n$(RESET)"
+	
+minilibx-linux:
+	@git clone https://github.com/42Paris/minilibx-linux.git $@ 
+
 clean:
-	@rm -f $(OBJS) $(PRINT_NAME)
-	@printf "\r\n\r$(BOLD)$(GREEN)ALL CLEAN!     \n\n"
+	@rm -f $(PRINT_NAME)
+	@printf "\r\n\r$(BOLD)$(GREEN)ALL CLEAN!     \n\n$(RESET)"
 	$(RM) $(OBJ)
 
 fclean: clean
@@ -90,8 +117,7 @@ fclean: clean
 	@printf "\b\b$(FADE)$(RED)(MLX REMOVED!)$(PEACH)\n\n"
 	$(RM) $(NAME)
 
-lib:
-	@make -C $(PRINT_PATH)
+lib: $(PRINT_NAME)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:03:13 by lmoran            #+#    #+#             */
-/*   Updated: 2024/01/22 19:19:10 by lmoran           ###   ########.fr       */
+/*   Updated: 2024/03/05 19:00:57 by lmoran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_isvals(char *s, char *c)
 {
-	int i;
-	int j;
-	int x;
+	int	i;
+	int	j;
+	int	x;
 
 	i = 0;
 	x = 0;

@@ -6,7 +6,7 @@
 /*   By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 18:43:42 by lmoran            #+#    #+#             */
-/*   Updated: 2024/01/16 18:46:34 by lmoran           ###   ########.fr       */
+/*   Updated: 2024/01/25 17:50:12 by lmoran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ t_list	*ft_lstnew(long content)
 
 	newnode = (t_list *)malloc(sizeof(t_list));
 	if (!newnode)
-		return (NULL);
+		return (0);
 	newnode->content = content;
 	newnode->index = 0;
 	newnode->group = 0;
 	newnode->cost_a = -1;
 	newnode->cost_b = -1;
-	newnode->next = NULL;
+	newnode->next = 0;
 	return (newnode);
 }

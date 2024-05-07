@@ -6,7 +6,7 @@
 /*   By: lmoran <lmoran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:13:50 by lmoran            #+#    #+#             */
-/*   Updated: 2024/01/22 19:43:02 by lmoran           ###   ########.fr       */
+/*   Updated: 2024/02/27 16:57:37 by lmoran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 # define LIBFT_H
 # include <fcntl.h>
 # include <limits.h>
+# include <math.h>
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <strings.h>
+# include <sys/stat.h>
+# include <sys/types.h>
 # include <unistd.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -40,7 +43,9 @@ int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
 int					ft_isvals(char *s, char *c);
+int					ft_iterate(char *s, int (*f)(char *, int));
 int					ft_iterate_double(char **s, int (*f)(char **, int, int));
+int					ft_make_rand(int i, int j);
 int					ft_prchar(int c);
 int					ft_prhex(unsigned int n, const char type);
 int					ft_printf(const char *s, ...);
@@ -53,10 +58,11 @@ int					ft_ttype(va_list args, const char type);
 int					ft_lines_double(char **s);
 int					ft_lstsize(t_list *lst);
 int					ft_memcmp(const void *s1, const void *s2, size_t size);
+int					ft_strcmp(char *s1, char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t size);
 int					ft_strlen(const char *c);
 int					ft_strlen_comp(char **s);
-int					ft_strlen_double(char **s);
+int					ft_linelen(char **s);
 
 int					ft_tolower(int c);
 int					ft_toupper(int c);
@@ -80,10 +86,12 @@ char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_substr(const char *s, unsigned int start, size_t len);
 char				*get_next_line(int fd);
 
-char				**ft_split(char const *s, char c);
+char				**ft_split(char *s, char c, int free_or_not);
+char				**ft_strdup_double(char **s);
 
 void				ft_bzero(void *s, size_t size);
 void				ft_clean(char *fd_l, char (*s)[BUFFER_SIZE + 1]);
+void				ft_free(char **s);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 void				ft_lstclear(t_list **lst, void (*del)(long));
@@ -104,7 +112,6 @@ void				*ft_memmove(void *dst, const void *src, size_t size);
 void				*ft_memset(void *s, int c, size_t size);
 
 t_list				*ft_lstlast(t_list *lst);
-t_list				*ft_lstmap(t_list *lst, long (*f)(long), void (*del)(long));
 t_list				*ft_lstnew(long content);
 
 #endif
