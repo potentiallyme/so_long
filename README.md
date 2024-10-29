@@ -7,11 +7,11 @@ Solve the mazes, create your own, and don´t get tricked by the unique movement!
 This project uses the MinilibX, a simple X-Window programming API in C to render our game, thus it is recommended to use a MAC or LINUX machine to compile the game.  
   
 You can create your own map! However, it must fit the following criteria:  
-`The map contains ONE player character 'P'`  
-`The map is square/rectangular and is closed`  
-`The map contains ONE EXIT 'E'`  
-`The map contains at LEAST ONE collectible 'C'`  
-`The map has to be solvable (player can reach the exit after collecting all the collectibles)`  
+1. The map contains ONE player character 'P'
+2. The map is square/rectangular and is closed
+3. The map contains ONE EXIT 'E'
+4. The map contains at LEAST ONE collectible 'C'
+5. The map has to be solvable (player can reach the exit after collecting all the collectibles)  
   
 <pre>
   111111111
