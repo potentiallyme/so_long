@@ -12,7 +12,8 @@ You can create your own map! However, it must fit the following criteria:
 3. The map contains ONE EXIT 'E'
 4. The map contains at LEAST ONE collectible 'C'
 5. The map has to be solvable (player can reach the exit after collecting all the collectibles)  
-  
+
+### MAP CREATION
 <pre>
   111111111
   1P0000011
